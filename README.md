@@ -261,4 +261,8 @@ Both tools demonstrated strong capabilities in assisting software engineering ta
 
 ---
 
-# 👤
+👤 Author
+
+Sahan Chanuka
+Student ID: IT22231864
+Sri Lanka 🇱🇰
