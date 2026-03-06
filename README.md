@@ -173,10 +173,8 @@ Security layers include:
 # 📂 Project Structure
 
 ```
-GenAI-Software-Engineering-Project
+Claude
 │
-├── app.py
-├── requirements.txt
 ├── templates
 │   ├── base.html
 │   ├── dashboard.html
