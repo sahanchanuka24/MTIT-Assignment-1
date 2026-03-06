@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Sign In — SecureAuth{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1 class="card-title">$ sign_in</h1>
+  <p class="card-sub">Enter your credentials to continue.</p>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="alerts">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" action="{{ url_for('login') }}" novalidate autocomplete="off">
+    {{ form.hidden_tag() }}  {# CSRF token injected here #}
+
+    <div class="form-group">
+      {{ form.email.label }}
+      {{ form.email(
+          class="is-invalid" if form.email.errors else "",
+          placeholder="user@example.com",
+          autocomplete="email",
+          spellcheck="false"
+      ) }}
+      {% for err in form.email.errors %}
+        <p class="field-error">⚠ {{ err }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.password.label }}
+      {{ form.password(
+          class="is-invalid" if form.password.errors else "",
+          placeholder="••••••••",
+          autocomplete="current-password"
+      ) }}
+      {% for err in form.password.errors %}
+        <p class="field-error">⚠ {{ err }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="check-group">
+      {{ form.remember() }}
+      {{ form.remember.label }}
+    </div>
+
+    {{ form.submit(class="btn btn-primary") }}
+  </form>
+
+  <div class="card-footer">
+    Don't have an account? <a href="{{ url_for('register') }}">Register</a>
+  </div>
+</div>
+{% endblock %}

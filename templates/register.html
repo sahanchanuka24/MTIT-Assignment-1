@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block title %}Register — SecureAuth{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1 class="card-title">$ new_user</h1>
+  <p class="card-sub">Create an account. All fields required.</p>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="alerts">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" action="{{ url_for('register') }}" novalidate autocomplete="off">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+      {{ form.email.label }}
+      {{ form.email(
+          class="is-invalid" if form.email.errors else "",
+          placeholder="user@example.com",
+          autocomplete="email",
+          spellcheck="false"
+      ) }}
+      {% for err in form.email.errors %}
+        <p class="field-error">⚠ {{ err }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.password.label }}
+      {{ form.password(
+          id="password",
+          class="is-invalid" if form.password.errors else "",
+          placeholder="Min 8 chars · upper · lower · digit · symbol",
+          autocomplete="new-password"
+      ) }}
+      <div class="strength-bar">
+        <div class="strength-fill" id="strength-fill"></div>
+      </div>
+      <p id="strength-label" style="font-size:.72rem;font-family:var(--mono);color:var(--muted);margin-top:.25rem;"></p>
+      {% for err in form.password.errors %}
+        <p class="field-error">⚠ {{ err }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.confirm_password.label }}
+      {{ form.confirm_password(
+          id="confirm",
+          class="is-invalid" if form.confirm_password.errors else "",
+          placeholder="Repeat password",
+          autocomplete="new-password"
+      ) }}
+      <p id="match-label" style="font-size:.72rem;font-family:var(--mono);margin-top:.25rem;"></p>
+      {% for err in form.confirm_password.errors %}
+        <p class="field-error">⚠ {{ err }}</p>
+      {% endfor %}
+    </div>
+
+    {{ form.submit(class="btn btn-primary") }}
+  </form>
+
+  <div class="card-footer">
+    Already have an account? <a href="{{ url_for('login') }}">Sign In</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  const pwField   = document.getElementById('password');
+  const fill      = document.getElementById('strength-fill');
+  const label     = document.getElementById('strength-label');
+  const confirm   = document.getElementById('confirm');
+  const matchLbl  = document.getElementById('match-label');
+
+  const levels = [
+    { pct: 20, color: '#ff3b5c', text: 'Very weak' },
+    { pct: 40, color: '#ff7043', text: 'Weak' },
+    { pct: 60, color: '#ffb020', text: 'Fair' },
+    { pct: 80, color: '#66bb6a', text: 'Strong' },
+    { pct:100, color: '#00e5a0', text: 'Very strong ✓' },
+  ];
+
+  function score(pw) {
+    let s = 0;
+    if (pw.length >= 8)  s++;
+    if (pw.length >= 12) s++;
+    if (/[A-Z]/.test(pw)) s++;
+    if (/[0-9]/.test(pw)) s++;
+    if (/[@$!%*?&#^_\-]/.test(pw)) s++;
+    return Math.min(s, 5);
+  }
+
+  pwField.addEventListener('input', () => {
+    const s = score(pwField.value);
+    const lvl = levels[s - 1] || { pct: 0, color: '#1e1e2e', text: '' };
+    fill.style.width = lvl.pct + '%';
+    fill.style.background = lvl.color;
+    label.textContent = lvl.text;
+    label.style.color = lvl.color;
+    checkMatch();
+  });
+
+  confirm.addEventListener('input', checkMatch);
+
+  function checkMatch() {
+    if (!confirm.value) { matchLbl.textContent = ''; return; }
+    if (confirm.value === pwField.value) {
+      matchLbl.textContent = '✓ Passwords match';
+      matchLbl.style.color = '#00e5a0';
+    } else {
+      matchLbl.textContent = '✗ Passwords do not match';
+      matchLbl.style.color = '#ff3b5c';
+    }
+  }
+</script>
+{% endblock %}

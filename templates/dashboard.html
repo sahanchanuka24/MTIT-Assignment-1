@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — SecureAuth{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width:540px">
+  <h1 class="card-title">$ dashboard</h1>
+  <p class="card-sub">You are authenticated. Session is active.</p>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="alerts">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <div style="border:1px solid var(--border);border-radius:2px;padding:1.25rem;margin-bottom:1.5rem;">
+    <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.8rem;">
+      <tbody>
+        <tr>
+          <td style="color:var(--muted);padding:.35rem 0">user.id</td>
+          <td style="color:var(--accent);padding:.35rem 0">{{ user['id'] }}</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);padding:.35rem 0">user.email</td>
+          <td style="color:var(--text);padding:.35rem 0">{{ user['email'] }}</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);padding:.35rem 0">user.created_at</td>
+          <td style="color:var(--text);padding:.35rem 0">{{ user['created_at'] }}</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);padding:.35rem 0">user.last_login</td>
+          <td style="color:var(--text);padding:.35rem 0">{{ user['last_login'] or 'First session' }}</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);padding:.35rem 0">session.logged_in_at</td>
+          <td style="color:var(--text);padding:.35rem 0">{{ session.logged_in_at }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
+    <div style="background:rgba(0,229,160,.06);border:1px solid rgba(0,229,160,.2);border-radius:2px;padding:.75rem;text-align:center">
+      <div style="font-family:var(--mono);font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Session</div>
+      <div style="font-size:.85rem;color:var(--accent);margin-top:.2rem">✓ Active</div>
+    </div>
+    <div style="background:rgba(0,102,255,.06);border:1px solid rgba(0,102,255,.2);border-radius:2px;padding:.75rem;text-align:center">
+      <div style="font-family:var(--mono);font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">CSRF</div>
+      <div style="font-size:.85rem;color:var(--accent2);margin-top:.2rem">✓ Protected</div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.25rem">
+    <form method="POST" action="{{ url_for('logout') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <button type="submit" class="btn btn-ghost">Sign Out</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
