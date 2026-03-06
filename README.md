@@ -1,135 +1,263 @@
-Generative AI in Software Engineering – Login System Project
-📝 Project Overview
+# 🤖 Generative AI in Software Engineering
 
-This project explores the practical application of Generative AI (GenAI) tools within the modern Information Technology landscape. As a Junior AI Technologist, the goal of this assignment is to demonstrate how GenAI can enhance core software engineering tasks, particularly improving productivity, development speed, and efficiency.
+### Secure Login System using Python Flask
 
-For this assignment, Option A: Software Engineering was selected.
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
+![Flask](https://img.shields.io/badge/Framework-Flask-black)
+![Database](https://img.shields.io/badge/Database-SQLite-green)
+![Security](https://img.shields.io/badge/Security-Bcrypt%20%7C%20CSRF-red)
+![License](https://img.shields.io/badge/License-Academic-yellow)
 
-🎯 Objectives
+---
 
-The main objective of this project is to experiment with and evaluate two leading Generative AI tools by applying them to a real-world IT problem.
+# 📌 Table of Contents
 
-The tools evaluated in this project include:
+* [Project Overview](#-project-overview)
+* [Objectives](#-objectives)
+* [Project Scope](#-project-scope)
+* [System Architecture](#-system-architecture)
+* [Tech Stack](#-tech-stack)
+* [Key Features](#-key-features)
+* [Project Structure](#-project-structure)
+* [Installation Guide](#-installation-guide)
+* [Usage](#-usage)
+* [AI Tools Evaluation](#-ai-tools-evaluation)
+* [Future Improvements](#-future-improvements)
+* [Learning Outcomes](#-learning-outcomes)
+* [Author](#-author)
 
-ChatGPT
+---
 
-Claude AI
+# 📝 Project Overview
 
-These tools were used to assist with code generation, debugging, and documentation tasks.
+This project explores the **practical application of Generative AI (GenAI) tools in modern Software Engineering workflows**.
 
-🛠️ Project Scope
+The objective of the project is to demonstrate how AI-powered development assistants can support engineers in performing common development tasks such as:
 
-The implementation focuses on several key software engineering activities supported by GenAI tools.
+* Code generation
+* Debugging
+* Documentation writing
+* System design support
 
-Code Generation
+As part of this assignment, **Option A – Software Engineering** was selected.
 
-Developed a functional Login System module using Python Flask with an SQLite database.
+A **secure authentication system** was developed using **Python Flask**, with AI tools assisting during the development process.
 
-Debugging
+---
 
-Identified and resolved errors in existing code snippets to improve system stability and performance.
+# 🎯 Objectives
 
-Documentation
+The main goal of this project is to **experiment with and evaluate two leading Generative AI tools** in solving real-world software engineering problems.
 
-Generated structured technical documentation explaining the system architecture and implementation.
+The tools used are:
 
-Comparative Evaluation
+* **ChatGPT**
+* **Claude AI**
 
-Both GenAI tools were evaluated based on:
+These tools were applied to different development tasks and later evaluated based on their performance and output quality.
 
-Output Quality
+---
 
-Prompt Sensitivity
+# 🛠 Project Scope
 
-Technical Limitations
+This project covers several important areas in the software development lifecycle.
 
-Performance
+## 1️⃣ Code Generation
 
-💻 Tech Stack
+Developing a **secure login system module** using:
 
-Backend
+* Python Flask
+* SQLite database
+* HTML templates
 
-Python Flask
+The AI tools assisted in generating functional code structures and implementation logic.
 
-Database
+## 2️⃣ Debugging and Error Resolution
 
-SQLite (database.db)
+AI tools were used to:
 
-Frontend
+* Detect errors in existing code
+* Suggest corrections
+* Improve overall application stability
 
-HTML with Jinja2 Templates
+## 3️⃣ Technical Documentation
 
-Security
+AI-generated content was used to create **structured documentation** explaining:
 
-Flask-Bcrypt (Password Hashing)
+* System functionality
+* Security mechanisms
+* Application architecture
 
-Flask-WTF (CSRF Protection)
+## 4️⃣ Comparative Evaluation
 
-Development Tools
+Both AI tools were analyzed based on:
 
-VS Code
+* Output Quality
+* Prompt Sensitivity
+* Technical Limitations
+* Overall Performance
 
-Postman
+---
 
-Git & GitHub
+# 🏗 System Architecture
 
-🚀 Key Features
+The system follows a **basic web application architecture**:
 
-User Registration with secure password hashing
+```
+User Browser
+      │
+      ▼
+HTML Templates (Jinja2)
+      │
+      ▼
+Flask Backend (app.py)
+      │
+      ▼
+SQLite Database
+```
 
-Secure User Login System
+Security layers include:
 
-Session Management for authenticated users
+* Password Hashing
+* CSRF Protection
+* Session Management
 
-Protected Dashboard Access
+---
 
-CSRF Protection for form submissions
+# 💻 Tech Stack
 
-Custom 404 and 500 Error Handling
+| Technology    | Purpose                      |
+| ------------- | ---------------------------- |
+| Python        | Backend programming language |
+| Flask         | Web framework                |
+| SQLite        | Lightweight database         |
+| HTML + Jinja2 | Frontend templates           |
+| Flask-Bcrypt  | Password hashing             |
+| Flask-WTF     | CSRF protection              |
+| Git & GitHub  | Version control              |
+| VS Code       | Development environment      |
+| Postman       | API testing                  |
 
-📂 Project Structure
-.
-├── app.py              # Main Flask application logic
-├── database.db         # SQLite database
-├── requirements.txt    # Project dependencies
-└── templates/          # HTML templates
-    ├── login.html
-    ├── register.html
-    └── dashboard.html
-⚙️ Installation & Setup
+---
 
-Clone the repository
+# 🚀 Key Features
 
-git clone https://github.com/your-username/your-repository-name.git
+### 🔐 Secure Authentication
 
-Navigate to the project folder
+* User Registration
+* Password Hashing using Bcrypt
 
-cd your-repository-name
+### 👤 Login System
 
-Install dependencies
+* Email and password validation
+* Secure login process
 
+### 🧠 Session Management
+
+* Logged-in users can access protected pages
+* Unauthorized users are restricted
+
+### 🛡 Security Features
+
+* CSRF protection
+* Input validation
+* Secure password storage
+
+### ⚠ Error Handling
+
+* Custom **404 Page**
+* Custom **500 Server Error Page**
+
+---
+
+# 📂 Project Structure
+
+```
+GenAI-Software-Engineering-Project
+│
+├── app.py
+│   Main Flask application
+├── database.db
+│   SQLite database
+├── requirements.txt
+│   Project dependencies
+├── templates
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+└── README.md
+```
+
+---
+
+# ⚙️ Installation Guide
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/genai-login-system.git
+```
+
+### 2️⃣ Navigate to the Project Directory
+
+```bash
+cd genai-login-system
+```
+
+### 3️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-Run the Flask application
+### 4️⃣ Run the Application
 
+```bash
 python app.py
+```
 
-Open your browser and visit
+### 5️⃣ Open the Application
 
+Open your browser and go to:
+
+```
 http://127.0.0.1:5000
-📊 Learning Outcomes
+```
 
-Through this project, the following skills were developed:
+---
 
-Practical usage of Generative AI in software development
+# 📊 AI Tools Evaluation
 
-Secure authentication system development
+| Criteria              | ChatGPT   | Claude AI |
+| --------------------- | --------- | --------- |
+| Output Quality        | High      | High      |
+| Prompt Sensitivity    | Moderate  | High      |
+| Technical Accuracy    | Very Good | Good      |
+| Documentation Ability | Excellent | Good      |
 
-Debugging and optimizing AI-generated code
+Both tools demonstrated strong capabilities in assisting software engineering tasks.
 
-Evaluating AI tools for real-world engineering workflows
+---
 
-👤 Author
+# 🔮 Future Improvements
 
-Sahan Chanuka
-Student ID: IT22231864
+* Password Reset functionality
+* Email verification system
+* User profile management
+* Role-based access control
+* JWT authentication
+* Docker container deployment
+* CI/CD pipeline integration
+
+---
+
+# 🎓 Learning Outcomes
+
+* Understanding the role of **Generative AI in software engineering**
+* Implementing **secure authentication systems**
+* Improving **debugging and code review workflows**
+* Evaluating **AI-assisted development tools**
+
+---
+
+# 👤
