@@ -176,16 +176,19 @@ Security layers include:
 GenAI-Software-Engineering-Project
 │
 ├── app.py
-│   Main Flask application
-├── database.db
-│   SQLite database
 ├── requirements.txt
-│   Project dependencies
 ├── templates
+│   ├── base.html
+│   ├── dashboard.html
+│   ├── error.html
 │   ├── login.html
 │   ├── register.html
-│   ├── dashboard.html
-└── README.md
+├── app.py
+├── auth.log
+├── requirements.txt
+├── users.db
+├── users.db-shm
+└──  users.db-wal
 ```
 
 ---
