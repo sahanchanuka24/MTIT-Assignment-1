@@ -188,7 +188,7 @@ GenAI-Software-Engineering-Project
 ├── requirements.txt
 ├── users.db
 ├── users.db-shm
-└──  users.db-wal
+└── users.db-wal
 ```
 
 ---
